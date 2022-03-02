@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div id="pagetitle"></div>
+        <h1>What </h1>
+        <div id="art">ART</div> 
+        <h1>ist are you thinking about?</h1>
+    </div>
+
+    <form id="add-style-form">
+        <input id="name" type="text" placeholder="Name">
+        <input id="style" type="text" placeholder="Style">
+        <input id="birth" type="number" placeholder="Year of birth">
+        <input id="death" type="number" placeholder="Year of death">
+        <button>Add</button>
+    </form>
+
+    <div id="filters">
+
+        <form id="filter-by-name">
+            <input id="filter-name" type="text" placeholder="Filter by Name">
+            <button>Filter</button>
+        </form>
+
+        <form id="filter-by-style">
+            <input id="filter-style" type="text" placeholder="Filter by Style">
+            <button>Filter</button>
+        </form>
+
+        <form id="filter-by-birth">
+            <input id="filter-birth" type="number" placeholder="Filter by Birth">
+            <button>Filter</button>
+        </form>
+
+        <form id="filter-by-death">
+            <input id="filter-death" type="number" placeholder="Filter by Death">
+            <button>Filter</button>
+        </form>
+
+        <button id="show-all" type="button">Show all</button>
+    </div>
+
+    <div id="headers">
+        <div>Name</div>
+        <div>Style</div>
+        <div>Year of Birth</div>
+        <div>Year of Death</div>
+        <div>Remove</div>
+    </div>
+
+    <div id="artists"></div>
+
+    <script src="database.js"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>
