@@ -2,7 +2,7 @@
 
 //Jag skapar ett nytt objekt som sedan returnerar konstnären
 
-function CreateNewArtist(name, style, birth, death){
+function CreateNewArtist(name, style, birth, death) {
     let artist = {
         name: name,
         style: style,
@@ -15,15 +15,15 @@ function CreateNewArtist(name, style, birth, death){
 
 //Nu lägger jag till en konstnär till min databas.
 
-function AddArtistToDatabase (database, artist) {
-    database.push (artist);
+function AddArtistToDatabase(database, artist) {
+    database.push(artist);
 }
 
-function GetArtistsByStyle (artists, style) {
+function GetArtistsByStyle(artists, style) {
     let ArtistsByStyle = [];
 
-    for (let artist of artist){
-        if (artist.style.toLowerCase()==style.toLowerCase()){
+    for (let artist of artist) {
+        if (artist.style.toLowerCase() == style.toLowerCase()) {
             GetArtistsByStyle.push(artist);
         }
     }
@@ -33,25 +33,25 @@ function GetArtistsByStyle (artists, style) {
 
 //Nu försöker jag ta reda på alla konstnärers medellivslängd. För detta behöver jag skapa en mer komplicerad average funktion.
 
-function getAverageLifeSpan (artists) {
-    
-   
+function getAverageLifeSpan(artists) {
+
+
     let sumOfBirth = 0;
     let sumOfDeath = 0;
     let averageLife = sumOfBirth + sumOfDeath;
 
-    for (let artist of artists){
+    for (let artist of artists) {
         averageLife = (sumOfBirth + artist.birth) + (sumOfDeath + artist.death);
 
     }
 
-    return Math.round (averageLife / artists.length);
+    return Math.round(averageLife / artists.length);
 }
 
 
 function renderArtist(artist) {
-    let li = document.createElement ("li");
-    li.classList.add ("artist");
+    let li = document.createElement("li");
+    li.classList.add("artist");
     li.id = artist.id;
 
     li.innerHTML = `
@@ -65,193 +65,193 @@ function renderArtist(artist) {
     return li;
 }
 
-function renderArtists (artists){
-    let artistsElement = document.getElementById ("artists");
-    console.log("test",artists);
+function renderArtists(artists) {
+    let artistsElement = document.getElementById("artists");
+    console.log("test", artists);
     artistsElement.innerHTML = "";
 
-    for (let artist of artists){
-        let artistElement = renderArtist (artist);
+    for (let artist of artists) {
+        let artistElement = renderArtist(artist);
         artistsElement.appendChild(artistElement);
     }
-    setRemoveArtistHandlers ();
+    setRemoveArtistHandlers();
 }
 
 
 const myForm = document.getElementById("add-style-form");
-myForm.addEventListener("submit", (e)=>{
-    e.preventDefault ();
+myForm.addEventListener("submit", (e) => {
+    e.preventDefault();
     let name = document.getElementById("name").value;
     let style = document.getElementById("style").value;
     let birth = document.getElementById("birth").value;
     let death = document.getElementById("death").value;
-    if(death.length==0||name.length==0||style.length==0||birth.length==0){
-            alert("please fill in all empty fields")
-        }else{
-        let artist = CreateNewArtist (name, style, birth, death);
-  
-        artist.id = database[database.length - 1].id + 1;
-        AddArtistToDatabase (database, artist);
-        renderArtists (database);
+    if (death.length == 0 || name.length == 0 || style.length == 0 || birth.length == 0) {
+        alert("please fill in all empty fields")
+    } else {
+        let artist = CreateNewArtist(name, style, birth, death);
 
-        let form = document.getElementById ("add-artist-form");
+        artist.id = database[database.length - 1].id + 1;
+        AddArtistToDatabase(database, artist);
+        renderArtists(database);
+
+        let form = document.getElementById("add-artist-form");
         myForm.reset();
-        }
+    }
 });
 
-function onAddArtistClick (){
+function onAddArtistClick() {
     let buttons = document.querySelectorAll(".add button");
-    let id= buttons.parentElement.id;
-    AddArtistToDatabase (database);
+    let id = buttons.parentElement.id;
+    AddArtistToDatabase(database);
     renderArtists(database);
 }
 
-function setAddArtistHandler (){
+function setAddArtistHandler() {
     let buttons = document.querySelectorAll(".add button");
-    for (let button of buttons){
-         button.addEventListener("click", onAddArtistClick);
+    for (let button of buttons) {
+        button.addEventListener("click", onAddArtistClick);
     }
-       
+
 }
 
-function onRemoveArtistClick (event){
+function onRemoveArtistClick(event) {
     let button = event.target;
     let id = button.parentElement.id;
-    let p=confirm("Are you sure you want to remove this artist?");
-        if(p==true){
-    RemoveArtistById(database, id);
-    renderArtists(database);
-    }else{
+    let p = confirm("Are you sure you want to remove this artist?");
+    if (p == true) {
+        RemoveArtistById(database, id);
+        renderArtists(database);
+    } else {
         alert("You did not remove the artist");
 
-    }  
+    }
 }
 //Tar bort en konstnär baserat på ens namn, för detta skapar jag en funktion där jag itirerar en for loop 
 
-function RemoveArtistById (artists, id){
+function RemoveArtistById(artists, id) {
     console.log(artists);
     console.log(id);
-    for (let i=0; i < artists.length; i++) {
+    for (let i = 0; i < artists.length; i++) {
         let artist = artists[i];
         //här itirerar jag en if loop 
-        if(artist.id==id){
-            artists.splice (i,1);
+        if (artist.id == id) {
+            artists.splice(i, 1);
             return;
         }
     }
 }
 
-function setRemoveArtistHandlers (){
-    let buttons = document.querySelectorAll (".artist button");
-    for (let button of buttons){
-        button.addEventListener ("click", onRemoveArtistClick);
+function setRemoveArtistHandlers() {
+    let buttons = document.querySelectorAll(".artist button");
+    for (let button of buttons) {
+        button.addEventListener("click", onRemoveArtistClick);
     }
 }
 
-function onFilterByNameSubmit(event){
+function onFilterByNameSubmit(event) {
     event.preventDefault();
     let filterarray = [];
 
-    let name = document.getElementById ("filter-name").value;
+    let name = document.getElementById("filter-name").value;
     let artists = database;
-        artists.forEach(element => {
-            if(element.name.includes(name)){
-                filterarray.push(element);
-            }
-            
-        });
+    artists.forEach(element => {
+        if (element.name.includes(name)) {
+            filterarray.push(element);
+        }
+
+    });
     renderArtists(filterarray);
-    
+
 }
 
-function onFilterByBirthSubmit(event){
+function onFilterByBirthSubmit(event) {
     event.preventDefault();
     let filterarray = [];
 
     let birth = document.getElementById("filter-birth").value;
     let artists = database;
-        artists.forEach(element => {
-            if(element.birth.includes(birth)){
-                filterarray.push(element);
-            }
-            
-        });
-    renderArtists (filterarray);
+    artists.forEach(element => {
+        if (element.birth.includes(birth)) {
+            filterarray.push(element);
+        }
+
+    });
+    renderArtists(filterarray);
 
 }
 
-function onFilterByDeathSubmit(event){
+function onFilterByDeathSubmit(event) {
     event.preventDefault();
     let filterarray = [];
 
     let death = document.getElementById("filter-death").value;
     let artists = database;
-        artists.forEach(element => {
-            if(element.death.includes(death)){
-                filterarray.push(element);
-            }
-            
-        });
-    renderArtists (filterarray);
+    artists.forEach(element => {
+        if (element.death.includes(death)) {
+            filterarray.push(element);
+        }
+
+    });
+    renderArtists(filterarray);
 
 }
 
-function onFilterByStyleSubmit(event){
+function onFilterByStyleSubmit(event) {
     event.preventDefault();
     let filterarray = [];
 
     let style = document.getElementById("filter-style").value;
     let artists = database;
-        artists.forEach(element => {
-            if(element.style.includes(style)){
-                filterarray.push(element);
-            }
-            
-        });
-    renderArtists (filterarray);
+    artists.forEach(element => {
+        if (element.style.includes(style)) {
+            filterarray.push(element);
+        }
+
+    });
+    renderArtists(filterarray);
 
 }
 
-function onShowAllClick(){
+function onShowAllClick() {
     console.log("kommerjagfram");
     document.getElementById("filter-style").value = "";
-    document.getElementById ("filter-birth").value = "";
-    document.getElementById ("filter-death").value ="";
-    document.getElementById ("filter-name").value ="";
+    document.getElementById("filter-birth").value = "";
+    document.getElementById("filter-death").value = "";
+    document.getElementById("filter-name").value = "";
     console.log("kommerjaghit2");
-    renderArtists (database);
+    renderArtists(database);
 
 }
 
-function setFilterArtistHandlers (){
-    let styleForm = document.getElementById ("filter-by-style");
-    let birthForm = document.getElementById ("filter-by-birth");
-    let deathForm = document.getElementById ("filter-by-death");
-    let nameForm = document.getElementById ("filter-by-name");
-    let showAll = document.getElementById ("show-all");
+function setFilterArtistHandlers() {
+    let styleForm = document.getElementById("filter-by-style");
+    let birthForm = document.getElementById("filter-by-birth");
+    let deathForm = document.getElementById("filter-by-death");
+    let nameForm = document.getElementById("filter-by-name");
+    let showAll = document.getElementById("show-all");
 
-    styleForm.addEventListener ("submit",(e)=>{
+    styleForm.addEventListener("submit", (e) => {
         e.preventDefault();
         onFilterByStyleSubmit(e);
     });
-    birthForm.addEventListener ("submit", (e)=>{
+    birthForm.addEventListener("submit", (e) => {
         e.preventDefault();
         onFilterByBirthSubmit(e);
     });
-    deathForm.addEventListener ("submit", (e)=>{
+    deathForm.addEventListener("submit", (e) => {
         e.preventDefault();
         onFilterByDeathSubmit(e);
     });
-    nameForm.addEventListener ("submit",(e)=>{
+    nameForm.addEventListener("submit", (e) => {
         e.preventDefault();
         onFilterByNameSubmit(e);
     });
-    showAll.addEventListener ("click", (e)=>{
+    showAll.addEventListener("click", (e) => {
         e.preventDefault();
         onShowAllClick(e);
     });
 }
 
-renderArtists (database);
-setAddArtistHandler ();
-setFilterArtistHandlers ();
+renderArtists(database);
+setAddArtistHandler();
+setFilterArtistHandlers();
