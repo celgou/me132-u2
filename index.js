@@ -22,7 +22,7 @@ function AddArtistToDatabase (database, artist) {
 //Tar bort en konstnär baserat på ens namn, för detta skapar jag en funktion där jag itirerar en for loop 
 
 function RemoveArtistById (artists, id){
-    for (let i=0; i < artist.length; i++) {
+    for (let i=0; i < artists.length; i++) {
         let artist = artist [i];
         //här itirerar jag en if loop 
         if (artist.id == id){
@@ -62,7 +62,7 @@ function getAverageLifeSpan (artists) {
 }
 
 
-function renderArtist (artists) {
+function renderArtist (artist) {
     let div = document.createElement ("div");
     div.classList.add ("artist");
     div.id = artist.id;
@@ -80,6 +80,7 @@ function renderArtist (artists) {
 
 function renderArtists (artists){
     let artistsElement = document.getElementById ("artists");
+    console.log("test",artists);
     artistsElement.innerHTML = "";
 
     for (let artist of artists){
@@ -97,8 +98,8 @@ function onAddArtistSubmit (event) {
     let birth = document.getElementById ("birth").value;
     let death = document.getElementById ("death").value;
 
-    let artist = createNewArtist (name, style, birth, death);
-
+    let artist = CreateNewArtist (name, style, birth, death);
+        console.log("artist",artist);
     artist.id = database[database.length - 1].id + 1;
     AddArtistToDatabase (database, artist);
     renderArtists (database);
@@ -106,6 +107,40 @@ function onAddArtistSubmit (event) {
     let form = document.getElementById ("add-artist-form");
     form.reset ();
 
+}
+
+const myForm = document.getElementById("add-style-form");
+myForm.addEventListener("submit", (e)=>{
+    e.preventDefault ();
+    console.log("event",e);
+    let name = document.getElementById ("name").value;
+    let style = document.getElementById ("style").value;
+    let birth = document.getElementById ("birth").value;
+    let death = document.getElementById ("death").value;
+
+    let artist = CreateNewArtist (name, style, birth, death);
+        console.log("artist",artist);
+    artist.id = database[database.length - 1].id + 1;
+    AddArtistToDatabase (database, artist);
+    renderArtists (database);
+
+    let form = document.getElementById ("add-artist-form");
+    myForm.reset();
+});
+
+function onAddArtistClick (){
+    let buttons = document.querySelectorAll(".add button");
+    let id= buttons.parentElement.id;
+    AddArtistToDatabase (database);
+    renderArtists(database);
+}
+
+function setAddArtistHandler (){
+    let buttons = document.querySelectorAll(".add button");
+    for (let button of buttons){
+         button.addEventListener("click", onAddArtistClick);
+    }
+       
 }
 
 function onRemoveArtistClick (event){
@@ -122,20 +157,58 @@ function setRemoveArtistHandlers (){
     }
 }
 
-function onFilterByBirthSubmit (event) {
-    event.preventDefault ();
+function onFilterByNameSubmit(event){
+    event.preventDefault();
+    let filterarray = [];
+    console.log("2");
+    let name = document.getElementById ("filter-name").value;
+    let artists = database;
+    console.log(artists);
+        artists.forEach(element => {
+            console.log(element.name);
+            if(element.name.includes(name)){
+                console.log(element.name,"hej");
+                filterarray.push(element);
+            }
+            
+        });
+    renderArtists(filterarray);
+    
+}
+
+function onFilterByBirthSubmit(event){
+    event.preventDefault();
     let birth = document.getElementById ("filter-birth").value;
     let artists = getArtistsByBirth (database, birth);
     renderArtists (artists);
 
 }
 
+function onFilterByDeathSubmit(event) {
+    event.preventDefault();
+    let style = document.getElementById ("filter-style").value;
+    let artists = getArtistsByStyle (database, style);
+    renderArtists (artists);
+
+}
+
+
+function onFilterByStyleSubmit (event) {
+    event.preventDefault();
+    let style = document.getElementById ("filter-style").value;
+    let artists = getArtistsByBirth (database, birth);
+    renderArtists (artists);
+
+}
+
+
 function onShowAllClick(){
+    console.log("kommerjagfram");
     document.getElementById("filter-style").value = "";
     document.getElementById ("filter-birth").value = "";
     document.getElementById ("filter-death").value ="";
     document.getElementById ("filter-name").value ="";
-
+    console.log("kommerjaghit2");
     renderArtists (database);
 
 }
@@ -144,5 +217,31 @@ function setFilterArtistHandlers (){
     let styleForm = document.getElementById ("filter-by-style");
     let birthForm = document.getElementById ("filter-by-birth");
     let deathForm = document.getElementById ("filter-by-death");
-    let
+    let nameForm = document.getElementById ("filter-by-name");
+    let showAll = document.getElementById ("show-all");
+
+    styleForm.addEventListener ("submit",(e)=>{
+        e.preventDefault();
+        onFilterByStyleSubmit(e);
+    });
+    birthForm.addEventListener ("submit", (e)=>{
+        e.preventDefault();
+        onFilterByBirthSubmit(e);
+    });
+    deathForm.addEventListener ("submit", (e)=>{
+        e.preventDefault();
+        onFilterByDeathSubmit(e);
+    });
+    nameForm.addEventListener ("submit",(e)=>{
+        e.preventDefault();
+        onFilterByNameSubmit(e);
+    });
+    showAll.addEventListener ("click", (e)=>{
+        e.preventDefault();
+        onShowAllClick(e);
+    });
 }
+
+renderArtists (database);
+setAddArtistHandler ();
+setFilterArtistHandlers ();
