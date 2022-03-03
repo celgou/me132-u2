@@ -19,24 +19,11 @@ function AddArtistToDatabase (database, artist) {
     database.push (artist);
 }
 
-//Tar bort en konstnär baserat på ens namn, för detta skapar jag en funktion där jag itirerar en for loop 
-
-function RemoveArtistById (artists, id){
-    for (let i=0; i < artists.length; i++) {
-        let artist = artist [i];
-        //här itirerar jag en if loop 
-        if (artist.id == id){
-            artist.splice (i,1);
-            return;
-        }
-    }
-}
-
 function GetArtistsByStyle (artists, style) {
     let ArtistsByStyle = [];
 
     for (let artist of artist){
-        if (artist.style.toLowerCase ()== style.toLowerCase ()){
+        if (artist.style.toLowerCase()==style.toLowerCase()){
             GetArtistsByStyle.push(artist);
         }
     }
@@ -89,43 +76,53 @@ function renderArtists (artists){
     }
     setRemoveArtistHandlers ();
 }
-
+/*
 function onAddArtistSubmit (event) {
     event.preventDefault ();
 
-    let name = document.getElementById ("name").value;
-    let style = document.getElementById ("style").value;
-    let birth = document.getElementById ("birth").value;
-    let death = document.getElementById ("death").value;
+    let name = document.getElementById("name").value;
+    let style = document.getElementById("style").value;
+    let birth = document.getElementById("birth").value;
+    let death = document.getElementById("death").value;
+    console.log("death",death);
+    if(name==null||style==null||birth==null||death==null){
+            alert("please fill in all empty fields")
+        }else{
+            AddArtistToDatabase (database, artist);
+        renderArtists (database);
 
+        let form = document.getElementById ("add-artist-form");
+        form.reset ();
+
+        }
     let artist = CreateNewArtist (name, style, birth, death);
         console.log("artist",artist);
     artist.id = database[database.length - 1].id + 1;
-    AddArtistToDatabase (database, artist);
-    renderArtists (database);
-
-    let form = document.getElementById ("add-artist-form");
-    form.reset ();
-
+    
+    
+   
 }
+*/
 
 const myForm = document.getElementById("add-style-form");
 myForm.addEventListener("submit", (e)=>{
     e.preventDefault ();
-    console.log("event",e);
-    let name = document.getElementById ("name").value;
-    let style = document.getElementById ("style").value;
-    let birth = document.getElementById ("birth").value;
-    let death = document.getElementById ("death").value;
+    let name = document.getElementById("name").value;
+    let style = document.getElementById("style").value;
+    let birth = document.getElementById("birth").value;
+    let death = document.getElementById("death").value;
+    if(death.length==0||name.length==0||style.length==0||birth.length==0){
+            alert("please fill in all empty fields")
+        }else{
+        let artist = CreateNewArtist (name, style, birth, death);
+  
+        artist.id = database[database.length - 1].id + 1;
+        AddArtistToDatabase (database, artist);
+        renderArtists (database);
 
-    let artist = CreateNewArtist (name, style, birth, death);
-        console.log("artist",artist);
-    artist.id = database[database.length - 1].id + 1;
-    AddArtistToDatabase (database, artist);
-    renderArtists (database);
-
-    let form = document.getElementById ("add-artist-form");
-    myForm.reset();
+        let form = document.getElementById ("add-artist-form");
+        myForm.reset();
+        }
 });
 
 function onAddArtistClick (){
@@ -146,8 +143,29 @@ function setAddArtistHandler (){
 function onRemoveArtistClick (event){
     let button = event.target;
     let id = button.parentElement.id;
-    RemoveArtistById (database, id);
-    renderArtists (database);
+    let p=confirm("Are you sure you want to remove this artist?");
+        if(p==true){
+    RemoveArtistById(database, id);
+    renderArtists(database);
+    }else{
+        alert("You did not remove the artist");
+
+    }  
+}
+//Tar bort en konstnär baserat på ens namn, för detta skapar jag en funktion där jag itirerar en for loop 
+
+function RemoveArtistById (artists, id){
+    console.log(artists);
+    console.log(id);
+    for (let i=0; i < artists.length; i++) {
+        let artist = artists[i];
+        //här itirerar jag en if loop 
+        if(artist.id==id){
+            artists.splice (i,1);
+            return;
+        }
+    }
+    
 }
 
 function setRemoveArtistHandlers (){
@@ -160,14 +178,11 @@ function setRemoveArtistHandlers (){
 function onFilterByNameSubmit(event){
     event.preventDefault();
     let filterarray = [];
-    console.log("2");
+
     let name = document.getElementById ("filter-name").value;
     let artists = database;
-    console.log(artists);
         artists.forEach(element => {
-            console.log(element.name);
             if(element.name.includes(name)){
-                console.log(element.name,"hej");
                 filterarray.push(element);
             }
             
