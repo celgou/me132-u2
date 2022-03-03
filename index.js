@@ -49,20 +49,20 @@ function getAverageLifeSpan (artists) {
 }
 
 
-function renderArtist (artist) {
-    let div = document.createElement ("div");
-    div.classList.add ("artist");
-    div.id = artist.id;
+function renderArtist(artist) {
+    let li = document.createElement ("li");
+    li.classList.add ("artist");
+    li.id = artist.id;
 
-    div.innerHTML = `
-        <div>${artist.name}</div>
+    li.innerHTML = `
+        <li>${artist.name}</li>
         <div>${artist.style}</div>
         <div>${artist.birth}</div>
         <div>${artist.death}</div>
         <button type="button">Remove</button>
     `;
 
-    return div;
+    return li;
 }
 
 function renderArtists (artists){
@@ -165,7 +165,6 @@ function RemoveArtistById (artists, id){
             return;
         }
     }
-    
 }
 
 function setRemoveArtistHandlers (){

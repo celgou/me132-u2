@@ -1,26 +1,20 @@
 body {
-    overflow-x: hidden;
-
+    height: 100vh;
+    width: 100vw;
 }
 
 h1 {
-
     font-family: 'Courier New', Courier, monospace;
     display: flex;
-    height: 40vh;
-    width: 40vh;
+    height: 10vh;
     align-items: center;
     justify-content: center;
-    background: rgba(0,0,0,0.5);
-    padding: 10px;
+    background: rgba(212, 204, 194, 0.5);
 }
 
   #text{
     position: relative;
-    color: #FFFFFF;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    color:black;
   }
   
 
@@ -60,6 +54,8 @@ h1 {
     background: antiquewhite;
     border-top: 5px solid antiquewhite;
     display: grid;
+    grid-template-columns: repeat (5,1fr);
+    gap:10px;
     grid-template-columns: repeat(5, 1fr);
     font-family: 'Courier New', Courier, monospace;
   }
@@ -67,17 +63,20 @@ h1 {
   #artists {
     color: black;
     font-family: 'Courier New', Courier, monospace;
-    padding: 10px;
+    padding: 20px;
+    height:90vh;
   }
   
   .artist {
     padding: 10px 10px;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
+    justify-content: center;
+    align-items: center;
+    margin-left: 30px;
   }
   
   .artist div {
-    /* Center vertically */
     display: flex;
     align-items: center;
   }
@@ -87,17 +86,5 @@ h1 {
   }
   
 
-
-  @media (min-aspect-ratio: 16/9) {
-    .video-container iframe {
-      height: 56.25vw;
-    }
-  }
-  @media (max-aspect-ratio: 16/9) {
-    .video-container iframe {
-      width: 177.78vh;
-    }
-  }
-  
   
   
