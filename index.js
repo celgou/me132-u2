@@ -76,33 +76,7 @@ function renderArtists (artists){
     }
     setRemoveArtistHandlers ();
 }
-/*
-function onAddArtistSubmit (event) {
-    event.preventDefault ();
 
-    let name = document.getElementById("name").value;
-    let style = document.getElementById("style").value;
-    let birth = document.getElementById("birth").value;
-    let death = document.getElementById("death").value;
-    console.log("death",death);
-    if(name==null||style==null||birth==null||death==null){
-            alert("please fill in all empty fields")
-        }else{
-            AddArtistToDatabase (database, artist);
-        renderArtists (database);
-
-        let form = document.getElementById ("add-artist-form");
-        form.reset ();
-
-        }
-    let artist = CreateNewArtist (name, style, birth, death);
-        console.log("artist",artist);
-    artist.id = database[database.length - 1].id + 1;
-    
-    
-   
-}
-*/
 
 const myForm = document.getElementById("add-style-form");
 myForm.addEventListener("submit", (e)=>{
@@ -192,29 +166,51 @@ function onFilterByNameSubmit(event){
 
 function onFilterByBirthSubmit(event){
     event.preventDefault();
-    let birth = document.getElementById ("filter-birth").value;
-    let artists = getArtistsByBirth (database, birth);
-    renderArtists (artists);
+    let filterarray = [];
+
+    let birth = document.getElementById("filter-birth").value;
+    let artists = database;
+        artists.forEach(element => {
+            if(element.birth.includes(birth)){
+                filterarray.push(element);
+            }
+            
+        });
+    renderArtists (filterarray);
 
 }
 
-function onFilterByDeathSubmit(event) {
+function onFilterByDeathSubmit(event){
     event.preventDefault();
-    let style = document.getElementById ("filter-style").value;
-    let artists = getArtistsByStyle (database, style);
-    renderArtists (artists);
+    let filterarray = [];
+
+    let death = document.getElementById("filter-death").value;
+    let artists = database;
+        artists.forEach(element => {
+            if(element.death.includes(death)){
+                filterarray.push(element);
+            }
+            
+        });
+    renderArtists (filterarray);
 
 }
 
-
-function onFilterByStyleSubmit (event) {
+function onFilterByStyleSubmit(event){
     event.preventDefault();
-    let style = document.getElementById ("filter-style").value;
-    let artists = getArtistsByBirth (database, birth);
-    renderArtists (artists);
+    let filterarray = [];
+
+    let style = document.getElementById("filter-style").value;
+    let artists = database;
+        artists.forEach(element => {
+            if(element.style.includes(style)){
+                filterarray.push(element);
+            }
+            
+        });
+    renderArtists (filterarray);
 
 }
-
 
 function onShowAllClick(){
     console.log("kommerjagfram");
