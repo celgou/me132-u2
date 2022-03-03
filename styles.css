@@ -3,15 +3,12 @@ body {
     width: 100vw;
     background-image: url(filip-kominik-IHtVbLRjTZU-unsplash.jpg);
     background-size: cover;
-
 }
-
 #längstupp{
     display: flex;
     align-items: center;
     justify-content: center;
 }
-
 h1 {
     font-family: 'Courier New', Courier, monospace;
     display: flex;
@@ -20,9 +17,7 @@ h1 {
     justify-content: center;
     position: relative;
     color: #000000;
-  }
-  
-
+}
 #add-artist-form {
     display: grid;
     align-items: center;
@@ -32,9 +27,8 @@ h1 {
     margin-bottom: 15px;
     padding-bottom: 15px;
     border-bottom: 1px solid #7356204f;
-  }
-  
-  #filters {
+}
+#filters {
     display: grid;
     background-color: #7e725a2c;
     padding: 10px;
@@ -44,16 +38,13 @@ h1 {
     margin-top: 10px;
     gap: 15px;
     border-radius: 10px;
-  }
-  
-  #filter-by-style,
-  #filter-by-age {
+}
+#filter-by-style, #filter-by-age {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr ;
     gap: 5px;
-  }
-  
-  #headers {
+}
+#headers {
     padding: 10px 20px;
     border-bottom: 10 px solid #5061bf56 ;
     border-radius: 10px;
@@ -65,44 +56,32 @@ h1 {
     grid-template-columns: repeat(5, 1fr);
     font-family: 'Courier New', Courier, monospace;
     font-style: italic;
-  }
-  
-  #artists {
+}
+#artists {
     color: black;
     font-family: 'Courier New', Courier, monospace;
     padding: 20px;
     height:90vh;
-  }
-
+}
 button{
     background-color: #5e554d3f;
     border-radius: 10px;
     padding: 2px;
     font-family: 'Courier New', Courier, monospace;
     font-size: medium;
-
-  }
-
-
-  
-  .artist {
+}
+.artist {
     padding: 10px 10px;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     justify-content: center;
     align-items: center;
     margin-left: 30px;
-  }
-  
-  .artist div {
+}
+.artist div {
     display: flex;
     align-items: center;
-  }
-  
-  .artist:nth-child(odd) {
+}
+.artist:nth-child(odd) {
     border-radius: 10px;
-  }
-  
-
-  
-  
+}
