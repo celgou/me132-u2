@@ -1,87 +1,87 @@
 body {
-    height: 100vh;
-    width: 100vw;
-    background-image: url(filip-kominik-IHtVbLRjTZU-unsplash.jpg);
-    background-size: cover;
+	height: 100vh;
+	width: 100vw;
+	background-image: url(filip-kominik-IHtVbLRjTZU-unsplash.jpg);
+	background-size: cover;
 }
-#längstupp{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+#längstupp {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 h1 {
-    font-family: 'Courier New', Courier, monospace;
-    display: flex;
-    height: 10vh;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    color: #000000;
+	font-family: 'Courier New', Courier, monospace;
+	display: flex;
+	height: 10vh;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	color: navy;
 }
 #add-artist-form {
-    display: grid;
-    align-items: center;
-    justify-content: center;
-    grid-template-columns: 1fr 1fr 1fr 200px 100px;
-    gap: 10px;
-    margin-bottom: 15px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid #7356204f;
+	display: grid;
+	align-items: center;
+	justify-content: center;
+	grid-template-columns: 1fr 1fr 1fr 200px 100px;
+	gap: 10px;
+	margin-bottom: 15px;
+	padding-bottom: 15px;
+	border-bottom: 1px solid #7356204f;
 }
 #filters {
-    display: grid;
-    background-color: #7e725a2c;
-    padding: 10px;
-    border-radius: 10px;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    margin-bottom: 15px;
-    margin-top: 10px;
-    gap: 15px;
-    border-radius: 10px;
+	display: grid;
+	background-color: #7e725a2c;
+	padding: 10px;
+	border-radius: 10px;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	margin-bottom: 15px;
+	margin-top: 10px;
+	gap: 15px;
+	border-radius: 10px;
 }
 #filter-by-style, #filter-by-age {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr ;
-    gap: 5px;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	gap: 5px;
 }
 #headers {
-    padding: 10px 20px;
-    border-bottom: 10 px solid #5061bf56 ;
-    border-radius: 10px;
-    background: #5061bf60;
-    border-top: 5px solid #5061bf65;
-    display: grid;
-    grid-template-columns: repeat (5,1fr);
-    gap:10px;
-    grid-template-columns: repeat(5, 1fr);
-    font-family: 'Courier New', Courier, monospace;
-    font-style: italic;
+	padding: 10px 20px;
+	border-bottom: 10px;
+	border-radius: 10px;
+	border-top: 5px solid navy;
+	display: grid;
+	grid-template-columns: repeat (5, 1fr);
+	gap: 10px;
+	grid-template-columns: repeat(5, 1fr);
+	font-family: 'Courier New', Courier, monospace;
+	font-style: italic;
 }
 #artists {
-    color: black;
-    font-family: 'Courier New', Courier, monospace;
-    padding: 20px;
-    height:90vh;
+	color: navy;
+    background-color: #ffffff65;
+	font-family: 'Courier New', Courier, monospace;
+	padding: 20px;
+    height: 80vh;
 }
-button{
-    background-color: #5e554d3f;
-    border-radius: 10px;
-    padding: 2px;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: medium;
+button {
+	background-color: #5e554d3f;
+	border-radius: 10px;
+	padding: 2px;
+	font-family: 'Courier New', Courier, monospace;
+	font-size: medium;
 }
 .artist {
-    padding: 10px 10px;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    justify-content: center;
-    align-items: center;
-    margin-left: 30px;
+	padding: 10px 10px;
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	justify-content: center;
+	align-items: center;
+	margin-left: 30px;
 }
 .artist div {
-    display: flex;
-    align-items: center;
+	display: flex;
+	align-items: center;
 }
 .artist:nth-child(odd) {
-    border-radius: 10px;
+	border-radius: 10px;
 }
